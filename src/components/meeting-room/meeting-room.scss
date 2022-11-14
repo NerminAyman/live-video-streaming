@@ -1,0 +1,14 @@
+.meeting-room {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  &_controls {
+    height: 5%;
+  }
+
+  &_video {
+    height: 95%;
+  }
+}
