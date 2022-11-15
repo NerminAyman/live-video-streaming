@@ -1,12 +1,19 @@
 import {useState} from "react";
 import {useClient} from "../../services/stream-config.service";
+import {ICameraVideoTrack, IMicrophoneAudioTrack} from "agora-rtc-react";
 
-export function Controls(props) {
+export interface ControlsProps {
+    tracks: [IMicrophoneAudioTrack, ICameraVideoTrack],
+    setStart: (start: boolean) => void,
+    setInCall: (inCall: boolean) => void,
+}
+
+export function Controls(props: ControlsProps) {
     const client = useClient();
     const { tracks, setStart, setInCall } = props;
     const [trackState, setTrackState] = useState({ video: true, audio: true });
 
-    const mute = async (type) => {
+    const mute = async (type: String) => {
         if (type === "audio") {
             await tracks[0].setEnabled(!trackState.audio);
             setTrackState((ps) => {

@@ -12,8 +12,7 @@ export function Home() {
             ) : (
                 <button
                     color="primary"
-                    onClick={() => setInCall(true)}
-                >
+                    onClick={() => setInCall(true)}>
                     Join Call
                 </button>
             )}

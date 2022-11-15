@@ -1,6 +1,11 @@
-import {AgoraVideoPlayer} from "agora-rtc-react";
+import {AgoraVideoPlayer, IAgoraRTCRemoteUser, ICameraVideoTrack, IMicrophoneAudioTrack} from "agora-rtc-react";
 
-export function Video(props) {
+export interface VideoProps {
+    users: IAgoraRTCRemoteUser [],
+    tracks: [IMicrophoneAudioTrack, ICameraVideoTrack],
+}
+
+export function Video(props: VideoProps) {
     const {users, tracks} = props;
 
     return (
@@ -15,10 +20,9 @@ export function Video(props) {
                 users.map((user) => {
                     if (user.videoTrack) {
                         return (
-                            <div>
+                            <div key={user.uid}>
                                 <AgoraVideoPlayer
                                     videoTrack={user.videoTrack}
-                                    key={user.uid}
                                     style={{height: "400px", width: "400px"}}
                                 />
                             </div>

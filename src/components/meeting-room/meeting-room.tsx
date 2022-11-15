@@ -2,25 +2,26 @@ import {useEffect, useState} from "react";
 import {channelName, config, useClient, useMicrophoneAndCameraTracks} from "../../services/stream-config.service";
 import {Controls} from "../controls/controls";
 import {Video} from "../video/video";
+import {IAgoraRTCRemoteUser} from "agora-rtc-react";
 
 export interface MeetingRoomProps {
-    setInCall: any
+    setInCall: (inCall: boolean) => void
 }
 
 export function MeetingRoom(props: MeetingRoomProps) {
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState<IAgoraRTCRemoteUser[]>([]);
     const [start, setStart] = useState(false);
     const client = useClient();
     const {ready, tracks} = useMicrophoneAndCameraTracks();
 
     useEffect(() => {
-        let init = async (name: any) => {
+        let init = async (name: string) => {
 
             client.on("user-published",
                 async (user, mediaType) => {
                     await client.subscribe(user, mediaType);
                     if (mediaType === "video") {
-                        let arr = [...users, user];
+                        let arr: IAgoraRTCRemoteUser [] = [...users, user];
                         setUsers(arr);
                     }
                     if (mediaType === "audio" && user && user.audioTrack) {
@@ -34,14 +35,14 @@ export function MeetingRoom(props: MeetingRoomProps) {
                 }
                 if (mediaType === "video") {
                     setUsers((prevUsers) => {
-                        return prevUsers.filter((User) => User.uid !== user.uid);
+                        return prevUsers.filter((User: IAgoraRTCRemoteUser) => User.uid !== user.uid);
                     });
                 }
             });
 
             client.on("user-left", (user) => {
                 setUsers((prevUsers) => {
-                    return prevUsers.filter((User) => User.uid !== user.uid);
+                    return prevUsers.filter((User: IAgoraRTCRemoteUser) => User.uid !== user.uid);
                 });
             });
 
