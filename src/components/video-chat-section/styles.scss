@@ -1,0 +1,19 @@
+.video-chat-section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #007bff22;
+
+
+  button {
+    background-color: #007bff;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 4px 8px;
+    color: #ffffff;
+    font-size: 20px;
+    width: fit-content;
+  }
+}
