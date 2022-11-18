@@ -1,20 +1,9 @@
 import './styles.scss';
-import {store} from "../redux/store";
-import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {selectUser} from "../redux/user.reducer";
 
 export function TextChatSection() {
-    const [user, setUser] = useState();
-
-    useEffect(() => {
-        let sub = store.subscribe(() =>{
-            const state = store.getState();
-            setUser(state.user.value);
-        });
-
-        return () => {
-            sub();
-        }
-    }, [])
+    const user = useSelector(selectUser)
 
     return (
         <div className='text-chat-chat'>
