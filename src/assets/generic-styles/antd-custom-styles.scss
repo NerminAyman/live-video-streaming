@@ -1,0 +1,45 @@
+.ant {
+  &-layout {
+    height: 100vh !important;
+
+    &-sider-children {
+      background-color: #e8e8e8;
+
+    }
+  }
+
+  &-input {
+    border-radius: 5px !important;
+    height: 40px;
+  }
+
+  &-modal {
+    &-content {
+      border-radius: 8px !important;
+    }
+
+    &-body {
+      padding: 20px 15px 0 15px !important;
+    }
+
+    &-footer {
+      border-top: unset !important;
+      padding: 15px 15px 20px 15px !important;
+
+      .ant-btn {
+        &-primary {
+          border-radius: 20px;
+          font-size: 18px;
+          height: fit-content;
+          padding: 5px 20px;
+        }
+
+        &:first-child {
+          display: none;
+        }
+
+      }
+    }
+  }
+}
+
