@@ -86,7 +86,10 @@ export function Home() {
                         }
                     </Content>
                 </Layout>
-                <Sider trigger={null} collapsible collapsed={sideMenuCollapsed}>
+                <Sider trigger={null}
+                       collapsible
+                       collapsed={sideMenuCollapsed}
+                       collapsedWidth={0} >
                     <TextChatSection/>
                 </Sider>
             </Layout>

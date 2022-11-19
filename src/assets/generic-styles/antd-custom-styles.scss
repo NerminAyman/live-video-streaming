@@ -2,9 +2,22 @@
   &-layout {
     height: 100vh !important;
 
-    &-sider-children {
-      background-color: #e8e8e8;
+    &-sider {
+      min-width: 350px !important;
+      flex: 0 0 350px !important;
+      max-width: 350px !important;
+      width: 350px !important;
 
+      &-collapsed {
+        min-width: 0 !important;
+        flex: 0 0 0 !important;
+        max-width: 0 !important;
+        width: 0 !important;
+      }
+
+      &-children {
+        background-color: #e8e8e8;
+      }
     }
   }
 
