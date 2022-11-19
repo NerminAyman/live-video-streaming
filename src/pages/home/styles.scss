@@ -1,26 +1,74 @@
 .home {
-  color: #000;
-  font-size: 20px;
-  height: 100%;
+  height: 100vh;
 
-  &_username-section {
+  &_header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px !important;
+    height: 80px !important;
 
-    input {
+    &-title {
       display: flex;
-      height: 24px;
-      align-self: center;
+      flex-direction: row;
+      align-items: center;
+
+      img {
+        width: 30px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin: 0;
+      }
     }
 
-    button {
-      background-color: #007bff;
+    &-cta {
+      padding: 0 24px;
+      font-size: 18px;
+      line-height: 64px;
       cursor: pointer;
-      border-radius: 5px;
-      padding: 4px 8px;
-      color: #ffffff;
-      font-size: 20px;
-      width: fit-content;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #1890ff;
+      }
+    }
+  }
+
+  .site-layout .site-layout-background {
+    background: #fff;
+  }
+
+  .ant-skeleton-element, .ant-skeleton-element .ant-skeleton-input {
+    width: 100%;
+    height: 100%;
+  }
+
+  &_modal {
+    &-body {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .anticon svg {
+        font-size: 22px;
+        margin-right: 10px;
+      }
+
+      p {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 0 !important;
+      }
     }
   }
 }
+
+
+
+
+
