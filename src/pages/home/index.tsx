@@ -2,7 +2,7 @@ import './styles.scss';
 import '../../assets/generic-styles/antd-custom-styles.scss'
 import VideoChatSection from "../../components/video-chat-section";
 import React, {useState} from "react";
-import {signOut, singIn} from "../../services/auth.service";
+import {isChannelFull, signOut, singIn} from "../../services/auth.service";
 import {useDispatch} from "react-redux";
 import {changeUserState} from "../../redux/user.reducer";
 import TextChatSection from "../../components/text-chat-section";
@@ -17,17 +17,29 @@ export function Home() {
     const [openModal, setOpenModal] = useState(true);
     const [username, setUsername] = useState('');
     const [videoCall, setVideoCall] = useState(false);
+    const [isRoomFull, setIsRoomFull] = useState(false);
     const dispatch = useDispatch();
 
     const logIn = (name: string) => {
-        if (name) {
-            singIn(name, (user: any) => {
-                dispatch(changeUserState({uid: user.uid, name: user.displayName}));
-                setVideoCall(true);
-                setOpenModal(false);
-                setUsername('');
-            });
-        }
+        isChannelFull().then((res) => {
+            if (res.ok) {
+                res.json().then(data => {
+                    if (data.success
+                        && name
+                        && ((data.data.channel_exist && data.data.broadcasters.length < 4)
+                            || !data.data.channel_exist)) {
+                        singIn(name, (user: any) => {
+                            dispatch(changeUserState({uid: user.uid, name: user.displayName}));
+                            setVideoCall(true);
+                            setOpenModal(false);
+                            setUsername('');
+                        });
+                    } else {
+                        setIsRoomFull(true);
+                    }
+                })
+            }
+        });
     }
 
     const logOut = () => {
@@ -59,6 +71,10 @@ export function Home() {
                            setUsername(e.target.value);
                        }}
                 />
+                {
+                    isRoomFull &&
+                    <p className='home_modal-note'>*Room is full now, please try again later.</p>
+                }
             </Modal>
             <Layout>
                 <Layout className="site-layout">
@@ -89,7 +105,7 @@ export function Home() {
                 <Sider trigger={null}
                        collapsible
                        collapsed={sideMenuCollapsed}
-                       collapsedWidth={0} >
+                       collapsedWidth={0}>
                     <TextChatSection/>
                 </Sider>
             </Layout>

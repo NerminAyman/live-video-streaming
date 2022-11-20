@@ -21,3 +21,7 @@ export function signOut(dispatchUser: Function) {
         dispatchUser();
     })
 }
+
+export function isChannelFull() {
+    return fetch('https://agora-channel-production.up.railway.app/home', {mode: "cors"});
+}
