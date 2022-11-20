@@ -71,10 +71,12 @@ export function Home() {
                            setUsername(e.target.value);
                        }}
                 />
-                {
-                    isRoomFull &&
-                    <p className='home_modal-note'>*Room is full now, please try again later.</p>
-                }
+                <div className='home_modal-note-container'>
+                    {
+                        isRoomFull &&
+                        <p className='home_modal-note'>*Room is full now, please try again later.</p>
+                    }
+                </div>
             </Modal>
             <Layout>
                 <Layout className="site-layout">
