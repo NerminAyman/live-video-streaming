@@ -7,6 +7,7 @@
     align-items: center;
     padding: 15px 25px !important;
     height: 80px !important;
+    background-color: #fff !important;
 
     &-title {
       display: flex;
@@ -40,6 +41,8 @@
 
   .site-layout .site-layout-background {
     background: #fff;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
   }
 
   .ant-skeleton-element, .ant-skeleton-element .ant-skeleton-input {

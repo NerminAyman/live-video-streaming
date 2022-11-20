@@ -62,7 +62,7 @@ export function Home() {
             </Modal>
             <Layout>
                 <Layout className="site-layout">
-                    <Header className="home_header site-layout-background" style={{padding: 0}}>
+                    <Header className="home_header" style={{padding: 0}}>
                         <div className='home_header-title'>
                             <img src='https://www.drupal.org/files/project-images/react.png' alt='React Blog'/>
                             <h1>React Blog</h1>
