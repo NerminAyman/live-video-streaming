@@ -1,7 +1,7 @@
 import './styles.scss';
 import {useSelector} from "react-redux";
 import {selectUser} from "../../redux/user.reducer";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {StreamChat} from "stream-chat";
 import {
     Chat,
@@ -16,8 +16,14 @@ import {
 import 'stream-chat-react/dist/css/index.css';
 import {streamAppKey} from "../../services/stream-config.service";
 import AvatarPlaceholder from '../../assets/images/avatar-placeholder.png'
+import {MenuUnfoldOutlined} from "@ant-design/icons";
 
-export function TextChatSection() {
+export interface TextChatSectionProps {
+    sideMenuCollapsed: boolean;
+    setSideMenuCollapsed: (videoCall: boolean) => void,
+}
+
+export function TextChatSection(props: TextChatSectionProps) {
     const user: any = useSelector(selectUser);
     const [client, setClient] = useState<StreamChat>();
 
@@ -61,6 +67,13 @@ export function TextChatSection() {
                     <Channel>
                         <Window>
                             <ChannelHeader title='Discussion'/>
+                            {
+                                !props.sideMenuCollapsed &&
+                                <div className='text-chat-section_toggle'
+                                     onClick={() => props.setSideMenuCollapsed(false)}>
+                                    <MenuUnfoldOutlined/>
+                                </div>
+                            }
                             <MessageList/>
                             <MessageInput/>
                         </Window>

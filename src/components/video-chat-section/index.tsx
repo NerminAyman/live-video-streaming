@@ -6,12 +6,13 @@ import './styles.scss';
 
 export interface VideoChatSectionProps {
     videoCall: boolean;
-    setVideoCall: (videoCall: boolean) => void
+    setVideoCall: (videoCall: boolean) => void,
+    hideVideo: boolean
 }
 
 const VideoChatSection = (props: VideoChatSectionProps) => {
     return (
-        <div className='video-chat-section'>
+        <div className={!props.hideVideo ? 'video-chat-section hide-video' : 'video-chat-section'}>
             {props.videoCall &&
                 <AgoraUIKit
                     rtcProps={{

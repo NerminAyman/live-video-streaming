@@ -97,7 +97,9 @@ export function Home() {
                         {
                             !videoCall ?
                                 <Skeleton.Input active={true}/> :
-                                <VideoChatSection videoCall={videoCall} setVideoCall={logOut}/>
+                                <VideoChatSection videoCall={videoCall}
+                                                  setVideoCall={logOut}
+                                                  hideVideo={sideMenuCollapsed}/>
 
                         }
                     </Content>
@@ -106,7 +108,8 @@ export function Home() {
                        collapsible
                        collapsed={sideMenuCollapsed}
                        collapsedWidth={0}>
-                    <TextChatSection/>
+                    <TextChatSection sideMenuCollapsed={sideMenuCollapsed}
+                                     setSideMenuCollapsed={() => setSideMenuCollapsed(!sideMenuCollapsed)}/>
                 </Sider>
             </Layout>
         </div>

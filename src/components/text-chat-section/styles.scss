@@ -1,4 +1,17 @@
 .text-chat-section {
+  &_toggle {
+    position: absolute;
+    top: 24px;
+    left: 18px;
+    font-size: 18px;
+    z-index: 1000;
+    cursor: pointer;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
   .str-chat {
     &__header {
       &-hamburger {
@@ -63,6 +76,10 @@
       &__header-livestream {
         padding: 18px;
         border-radius: 0;
+
+        @media (max-width: 767px) {
+          padding: 18px 18px 18px 50px;
+        }
       }
     }
   }
